@@ -35,7 +35,6 @@ jobs:
         push: true
         tags: |
           ghcr.io/${{ github.repository }}:latest
-          ghcr.io/${{ github.repository }}:{{ .Version }}
-          ghcr.io/${{ github.repository }}:{{ .Major }}.{{ .Minor }}.{{ .Patch }}
-          ghcr.io/${{ github.repository }}:{{ .Major }}.{{ .Minor }}
-          ghcr.io/${{ github.repository }}:{{ .Major }}
+
+    - name: Image digest
+      run: echo ${{ steps.docker_build.outputs.digest }}
