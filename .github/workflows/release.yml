@@ -38,4 +38,4 @@ jobs:
           ghcr.io/${{ github.repository }}:{{ .Version }}
           ghcr.io/${{ github.repository }}:{{ .Major }}.{{ .Minor }}.{{ .Patch }}
           ghcr.io/${{ github.repository }}:{{ .Major }}.{{ .Minor }}
-          ghcr.io/${{ github.repository }}:{{ .Major }}"
+          ghcr.io/${{ github.repository }}:{{ .Major }}
