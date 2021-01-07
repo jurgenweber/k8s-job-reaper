@@ -33,7 +33,7 @@ for j in $(kubectl get jobs --all-namespaces -o json | jq -r ".items[] | select(
 
   delete=0
   blacklisted=0
-  #echo "$job: $fin"
+  echo "$job: $fin, $ttl"
   for n in "${NS_BLACKLIST[@]}"; do  # check if in a blacklisted namespace
     [ "$n" == "$ns" ] && blacklisted=1
   done
@@ -48,7 +48,7 @@ for j in $(kubectl get jobs --all-namespaces -o json | jq -r ".items[] | select(
               [[ "$begin" < "$exp_date" ]] && echo "Unfinished job $ns/$job expired (at $exp_date) due to default failed TTL ($DEFAULT_TTL_FAILED), deleting" && delete=1
             fi
         fi
-      elif [ "$DEFAULT_TTL" != "" ]; then  # otherwise check if global TTL set
+      elif [ "$DEFAULT_TTL" != "" ] && [ "$DEFAULT_TTL" != "nil" ]; then  # otherwise check if global TTL set
         if [ "$active" -eq 0 ] ; then
             if [ "$succeeded" -eq 1 ]; then
               exp_date=$(get_exp_date "$DEFAULT_TTL")
