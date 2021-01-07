@@ -37,52 +37,52 @@ for j in $(kubectl get jobs --all-namespaces -o json | jq -r ".items[] | select(
     [ "$n" == "$ns" ] && blacklisted=1
   done
   if [ $blacklisted -eq 0 ]; then
-      if [ "$ttl" != "" ] ; then  # check if TTL annotation on Job
-        echo "ttl annotation found on $ns/$job"
-        if [ "$active" -eq 0 ] ; then
-            if [ "$succeeded" -eq 1 ]; then
-              exp_date=$(get_exp_date "$ttl")
-              if [[ "$fin" < "$exp_date" ]]; then
-                echo "Finished job $ns/$job expired (at $exp_date) due to TTL($ttl) annotation, deleting"
-                delete=1
-              else
-                echo "Finished job $ns/$job has not expired (at $exp_date) due to TTL($ttl) annotation, ignoring"
-              fi
+    if [ "$ttl" != "" ] ; then  # check if TTL annotation on Job
+      echo "ttl annotation found on $ns/$job"
+      if [ "$active" -eq 0 ] ; then
+          if [ "$succeeded" -eq 1 ]; then
+            exp_date=$(get_exp_date "$ttl")
+            if [[ "$fin" < "$exp_date" ]]; then
+              echo "Finished job $ns/$job expired (at $exp_date) due to TTL($ttl) annotation, deleting"
+              delete=1
             else
-              exp_date=$(get_exp_date "$DEFAULT_TTL_FAILED")
-              if [[ "$begin" < "$exp_date" ]]; then
-                echo "Unfinished job $ns/$job expired (at $exp_date) due to default failed TTL ($DEFAULT_TTL_FAILED), deleting"
-                delete=1
-              else
-                echo "Unfinished job $ns/$job has not expired (at $exp_date) due to default failed TTL ($DEFAULT_TTL_FAILED), ignoring"
-              fi
+              echo "Finished job $ns/$job has not expired (at $exp_date) due to TTL($ttl) annotation, ignoring"
             fi
-        fi
-      elif [ "$DEFAULT_TTL" != "" ] && [ "$DEFAULT_TTL" != "nil" ]; then  # otherwise check if global TTL set
-        if [ "$active" -eq 0 ] ; then
-            if [ "$succeeded" -eq 1 ]; then
-              exp_date=$(get_exp_date "$DEFAULT_TTL")
-              if [[ "$fin" < "$exp_date" ]]; then
-                echo "Finished job $ns/$job expired (at $exp_date) due to global TTL($DEFAULT_TTL), deleting"
-                delete=1
-              else
-                echo "Finished job $ns/$job has not expired (at $exp_date) due to global TTL($DEFAULT_TTL), ignoring"
-              fi
+          else
+            exp_date=$(get_exp_date "$DEFAULT_TTL_FAILED")
+            if [[ "$begin" < "$exp_date" ]]; then
+              echo "Unfinished job $ns/$job expired (at $exp_date) due to default failed TTL ($DEFAULT_TTL_FAILED), deleting"
+              delete=1
             else
-              exp_date=$(get_exp_date "$DEFAULT_TTL_FAILED")
-              if [[ "$begin" < "$exp_date" ]]; then
-                echo "Unfinished job $ns/$job expired (at $exp_date) due to default failed TTL($DEFAULT_TTL_FAILED), deleting"
-                delete=1
-              else
-                echo "Unfinished job $ns/$job has not expired (at $exp_date) due to default failed TTL($DEFAULT_TTL_FAILED), ignoring"
-              fi
+              echo "Unfinished job $ns/$job has not expired (at $exp_date) due to default failed TTL ($DEFAULT_TTL_FAILED), ignoring"
             fi
-        fi
-      elif [ $delete -eq 1 ]; then
-        kubectl delete job -n "$ns" "$job"
-      else
-        echo "job $ns/$job not ttl annotation set and no DEFAULT_TTL set, ignoring"
+          fi
       fi
+    elif [ "$DEFAULT_TTL" != "" ] && [ "$DEFAULT_TTL" != "nil" ]; then  # otherwise check if global TTL set
+      if [ "$active" -eq 0 ] ; then
+          if [ "$succeeded" -eq 1 ]; then
+            exp_date=$(get_exp_date "$DEFAULT_TTL")
+            if [[ "$fin" < "$exp_date" ]]; then
+              echo "Finished job $ns/$job expired (at $exp_date) due to global TTL($DEFAULT_TTL), deleting"
+              delete=1
+            else
+              echo "Finished job $ns/$job has not expired (at $exp_date) due to global TTL($DEFAULT_TTL), ignoring"
+            fi
+          else
+            exp_date=$(get_exp_date "$DEFAULT_TTL_FAILED")
+            if [[ "$begin" < "$exp_date" ]]; then
+              echo "Unfinished job $ns/$job expired (at $exp_date) due to default failed TTL($DEFAULT_TTL_FAILED), deleting"
+              delete=1
+            else
+              echo "Unfinished job $ns/$job has not expired (at $exp_date) due to default failed TTL($DEFAULT_TTL_FAILED), ignoring"
+            fi
+          fi
+      fi
+    elif [ $delete -eq 1 ]; then
+      kubectl delete job -n "$ns" "$job"
+    else
+      echo "job $ns/$job not ttl annotation set and no DEFAULT_TTL set, ignoring"
+    fi
   fi
 done
 
