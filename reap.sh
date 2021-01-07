@@ -58,8 +58,11 @@ for j in $(kubectl get jobs --all-namespaces -o json | jq -r ".items[] | select(
               [[ "$begin" < "$exp_date" ]] && echo "Unfinished job $ns/$job expired (at $exp_date) due to default failed TTL($DEFAULT_TTL_FAILED), deleting" && delete=1
             fi
         fi
+      elif [ $delete -eq 1 ]; then
+        kubectl delete job -n "$ns" "$job"
+      else
+        echo "job $ns/$job not ttl annotation set and no DEFAULT_TTL set, ignoring"
       fi
-      [ $delete -eq 1 ] && kubectl delete job -n "$ns" "$job"
   fi
 done
 
