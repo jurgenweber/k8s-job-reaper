@@ -1,3 +1,11 @@
+## [1.0.1](https://github.com/jurgenweber/k8s-job-reaper/compare/v1.0.0...v1.0.1) (2021-01-07)
+
+
+### Bug Fixes
+
+* get the output of the tag and tag and push the image ([54b38f7](https://github.com/jurgenweber/k8s-job-reaper/commit/54b38f78be5afbdb534ad59c20f3383435117fad))
+* use the right output pathing ([98eaf9b](https://github.com/jurgenweber/k8s-job-reaper/commit/98eaf9b79b8ea082c6198d47f2df84658a60eadb))
+
 # 1.0.0 (2021-01-06)
 
 
