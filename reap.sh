@@ -42,7 +42,7 @@ for j in $(kubectl get jobs --all-namespaces -o json | jq -r ".items[] | select(
         if [ "$active" -eq 0 ] ; then
             if [ "$succeeded" -eq 1 ]; then
               exp_date=$(get_exp_date "$ttl")
-              if [ "$fin" < "$exp_date" ]; then
+              if [[ "$fin" < "$exp_date" ]]; then
                 echo "Finished job $ns/$job expired (at $exp_date) due to TTL($ttl) annotation, deleting"
                 delete=1
               else
@@ -50,7 +50,7 @@ for j in $(kubectl get jobs --all-namespaces -o json | jq -r ".items[] | select(
               fi
             else
               exp_date=$(get_exp_date "$DEFAULT_TTL_FAILED")
-              if [ "$begin" < "$exp_date" ]; then
+              if [[ "$begin" < "$exp_date" ]]; then
                 echo "Unfinished job $ns/$job expired (at $exp_date) due to default failed TTL ($DEFAULT_TTL_FAILED), deleting"
                 delete=1
               else
@@ -62,7 +62,7 @@ for j in $(kubectl get jobs --all-namespaces -o json | jq -r ".items[] | select(
         if [ "$active" -eq 0 ] ; then
             if [ "$succeeded" -eq 1 ]; then
               exp_date=$(get_exp_date "$DEFAULT_TTL")
-              if [ "$fin" < "$exp_date" ]; then
+              if [[ "$fin" < "$exp_date" ]]; then
                 echo "Finished job $ns/$job expired (at $exp_date) due to global TTL($DEFAULT_TTL), deleting"
                 delete=1
               else
@@ -70,7 +70,7 @@ for j in $(kubectl get jobs --all-namespaces -o json | jq -r ".items[] | select(
               fi
             else
               exp_date=$(get_exp_date "$DEFAULT_TTL_FAILED")
-              if [ "$begin" < "$exp_date" ]; then
+              if [[ "$begin" < "$exp_date" ]]; then
                 echo "Unfinished job $ns/$job expired (at $exp_date) due to default failed TTL($DEFAULT_TTL_FAILED), deleting"
                 delete=1
               else
