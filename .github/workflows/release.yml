@@ -41,10 +41,10 @@ jobs:
         load: true
         tags: |
           ghcr.io/${{ github.repository }}:latest
-          ghcr.io/${{ github.repository }}:${{ outputs.tag.value }}
+          ghcr.io/${{ github.repository }}:${{ steps.gettag.outputs.value }}
 
     - run: docker push ghcr.io/${{ github.repository }}:latest
-    - run: docker push ghcr.io/${{ github.repository }}:${{ outputs.tag.value }}
+    - run: docker push ghcr.io/${{ github.repository }}:${{ steps.gettag.outputs.value }}
 
     - name: Image digest
       run: echo ${{ steps.docker_build.outputs.digest }}
