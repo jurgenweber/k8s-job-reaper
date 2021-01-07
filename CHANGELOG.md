@@ -1,3 +1,10 @@
+## [1.0.2](https://github.com/jurgenweber/k8s-job-reaper/compare/v1.0.1...v1.0.2) (2021-01-07)
+
+
+### Bug Fixes
+
+* reference the output name ([59a7ea4](https://github.com/jurgenweber/k8s-job-reaper/commit/59a7ea4a762692c0cc5e91923a711a8245f7e46d))
+
 ## [1.0.1](https://github.com/jurgenweber/k8s-job-reaper/compare/v1.0.0...v1.0.1) (2021-01-07)
 
 
