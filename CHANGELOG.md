@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/jurgenweber/k8s-job-reaper/compare/v1.1.0...v1.2.0) (2021-01-07)
+
+
+### Features
+
+* add more debug and a way to disable reaping ([68a40aa](https://github.com/jurgenweber/k8s-job-reaper/commit/68a40aa3c6b87c171f666a72b8b562132a3356cd))
+
 # [1.1.0](https://github.com/jurgenweber/k8s-job-reaper/compare/v1.0.2...v1.1.0) (2021-01-07)
 
 
