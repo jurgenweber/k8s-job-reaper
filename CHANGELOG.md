@@ -1,3 +1,10 @@
+## [1.3.1](https://github.com/jurgenweber/k8s-job-reaper/compare/v1.3.0...v1.3.1) (2021-01-07)
+
+
+### Bug Fixes
+
+* syntax/shellcheck ([bcc568c](https://github.com/jurgenweber/k8s-job-reaper/commit/bcc568cbe3dc3e34bbac957421b01fa81085150c))
+
 # [1.3.0](https://github.com/jurgenweber/k8s-job-reaper/compare/v1.2.0...v1.3.0) (2021-01-07)
 
 
