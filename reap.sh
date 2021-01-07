@@ -78,10 +78,11 @@ for j in $(kubectl get jobs --all-namespaces -o json | jq -r ".items[] | select(
             fi
           fi
       fi
-    elif [ $delete -eq 1 ]; then
-      kubectl delete job -n "$ns" "$job"
     else
       echo "job $ns/$job not ttl annotation set and no DEFAULT_TTL set, ignoring"
+    fi
+    if [ $delete -eq 1 ]; then
+      kubectl delete job -n "$ns" "$job"
     fi
   fi
 done
