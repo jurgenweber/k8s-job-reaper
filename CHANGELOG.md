@@ -1,3 +1,17 @@
+# [1.4.0](https://github.com/jurgenweber/k8s-job-reaper/compare/v1.3.1...v1.4.0) (2021-01-07)
+
+
+### Bug Fixes
+
+* indentation ([7173fd7](https://github.com/jurgenweber/k8s-job-reaper/commit/7173fd725de3753637a3be0bc9c168d6ae130982))
+* jobs with a ttl are not deleting, moving logic a little ([8b601f0](https://github.com/jurgenweber/k8s-job-reaper/commit/8b601f08ae248c26795c946dc652fbf146bd7140))
+* shellcheck errors in build.sh ([a51a87e](https://github.com/jurgenweber/k8s-job-reaper/commit/a51a87ed4ee73e608225ee608080bce007e9e6e4))
+
+
+### Features
+
+* add test workflow ([20c3dc3](https://github.com/jurgenweber/k8s-job-reaper/commit/20c3dc3193f9353c9cd47e86ec9fe92a6798734a))
+
 ## [1.3.1](https://github.com/jurgenweber/k8s-job-reaper/compare/v1.3.0...v1.3.1) (2021-01-07)
 
 
