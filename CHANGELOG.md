@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/jurgenweber/k8s-job-reaper/compare/v1.0.2...v1.1.0) (2021-01-07)
+
+
+### Features
+
+* be a bit more verbose with what is happening ([4bb56fd](https://github.com/jurgenweber/k8s-job-reaper/commit/4bb56fdd313d8feb3534ac4d9bee52880792e9cd))
+
 ## [1.0.2](https://github.com/jurgenweber/k8s-job-reaper/compare/v1.0.1...v1.0.2) (2021-01-07)
 
 
