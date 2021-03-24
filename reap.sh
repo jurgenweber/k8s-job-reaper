@@ -88,4 +88,3 @@ for j in $(kubectl get jobs --all-namespaces -o json | jq -r ".items[] | select(
 done
 
 echo "reaper finished"
-
