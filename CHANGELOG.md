@@ -1,3 +1,10 @@
+# [1.5.0](https://github.com/jurgenweber/k8s-job-reaper/compare/v1.4.0...v1.5.0) (2021-03-24)
+
+
+### Features
+
+* we prefix the minus, clean it out if its been used ([b88189c](https://github.com/jurgenweber/k8s-job-reaper/commit/b88189c2d60f862c50cfb265f419279f82f01a7b))
+
 # [1.4.0](https://github.com/jurgenweber/k8s-job-reaper/compare/v1.3.1...v1.4.0) (2021-01-07)
 
 
