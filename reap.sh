@@ -7,7 +7,7 @@ NS_BLACKLIST=("${NS_BLACKLIST:-kube-system}")  # do NOT delete Jobs from these n
 
 function get_exp_date {
   local offset=$1
-  date -u -d "-${offset/-}" "+%FT%H:%M:%SZ"
+  date -u -d "${offset/-}" "+%FT%H:%M:%SZ"
 }
 
 echo "starting reaper with:"
