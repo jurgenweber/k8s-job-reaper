@@ -1,3 +1,10 @@
+## [1.5.1](https://github.com/jurgenweber/k8s-job-reaper/compare/v1.5.0...v1.5.1) (2021-03-25)
+
+
+### Bug Fixes
+
+* no - ([f72aef7](https://github.com/jurgenweber/k8s-job-reaper/commit/f72aef760549ffcba6ee0f529b2a92211370f581))
+
 # [1.5.0](https://github.com/jurgenweber/k8s-job-reaper/compare/v1.4.0...v1.5.0) (2021-03-24)
 
 
